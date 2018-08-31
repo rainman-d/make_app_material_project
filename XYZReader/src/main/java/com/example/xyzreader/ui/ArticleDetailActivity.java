@@ -60,7 +60,7 @@ public class ArticleDetailActivity extends AppCompatActivity
         getLoaderManager().initLoader(0, null, this);
 
         mPagerAdapter = new MyPagerAdapter(getFragmentManager());
-//        mPager = (ViewPager) findViewById(R.id.pager);
+
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageMargin((int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()));
@@ -85,9 +85,6 @@ public class ArticleDetailActivity extends AppCompatActivity
             }
         });
 
-//        mUpButtonContainer = findViewById(R.id.up_container);
-
-//        mUpButton = findViewById(R.id.action_up);
         mUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

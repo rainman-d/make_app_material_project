@@ -24,18 +24,12 @@
         <item name="colorAccent">@color/theme_accent</item>
     </style>
 
-    <!--<style name="AppTheme.DetailToolbar" parent="ThemeOverlay.AppCompat.Light">-->
-        <!--<item name="android:textAppearance">@android:color/white</item>-->
-        <!--<item name="android:textColorSecondary">@android:color/white</item>-->
-    <!--</style>-->
-
     <style name="Detail_Text">
         <item name="android:layout_marginLeft">@dimen/detail_inner_horiz_margin</item>
         <item name="android:layout_marginRight">@dimen/detail_inner_horiz_margin</item>
         <item name="android:paddingBottom">@dimen/detail_body_bottom_margin</item>
-        <item name="android:textColorLink">@color/theme_accent</item>
         <item name="android:textSize">@dimen/detail_body_text_size</item>
-        <item name="android:textColor">@color/ltgray</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

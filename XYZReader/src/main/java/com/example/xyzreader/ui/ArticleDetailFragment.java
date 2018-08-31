@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -36,6 +37,9 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A fragment representing a single Article detail screen. This fragment is
  * either contained in a {@link ArticleListActivity} in two-pane mode (on
@@ -52,17 +56,17 @@ public class ArticleDetailFragment extends Fragment implements
     private long mItemId;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
-    private ObservableScrollView mScrollView;
-    private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
-    private ColorDrawable mStatusBarColorDrawable;
 
-    private int mTopInset;
-    private View mPhotoContainerView;
-    private ImageView mPhotoView;
-    private Toolbar mToolbar;
+    @BindView(R.id.photo_container)
+    View mPhotoContainerView;
+    @BindView(R.id.photo)
+    ImageView mPhotoView;
+    @BindView(R.id.detail_toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.share_fab)
+    FloatingActionButton mFloatingActionButton;
     private int mScrollY;
     private boolean mIsCard = false;
-    private int mStatusBarFullOpacityBottom;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
     // Use default locale format
@@ -94,8 +98,7 @@ public class ArticleDetailFragment extends Fragment implements
         }
 
         mIsCard = getResources().getBoolean(R.bool.detail_is_card);
-        mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
-                R.dimen.detail_card_top_margin);
+
         setHasOptionsMenu(true);
     }
 
@@ -118,13 +121,9 @@ public class ArticleDetailFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
+        ButterKnife.bind(this, mRootView);
 
-        mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
-        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
-
-        mStatusBarColorDrawable = new ColorDrawable(0);
-
-        mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
@@ -135,7 +134,6 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
         bindViews();
-        mToolbar = (Toolbar) mRootView.findViewById(R.id.detail_toolbar);
         return mRootView;
     }
 

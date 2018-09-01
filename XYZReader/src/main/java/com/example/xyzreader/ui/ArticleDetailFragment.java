@@ -133,7 +133,6 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        bindViews();
         return mRootView;
     }
 
